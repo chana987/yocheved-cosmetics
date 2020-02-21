@@ -12,8 +12,7 @@ import {
     FILTER_CONTACTS,
     CLEAR_CONTACTS,
     CLEAR_FILTER,
-    CONTACT_ERROR,
-    SET_LOADING
+    CONTACT_ERROR
 } from '../types'
 
 const ContactState = props => {
@@ -143,8 +142,6 @@ const ContactState = props => {
         })
     }
 
-    const setLoading = () => dispatch({ type: SET_LOADING })
-
     return (
         <ContactContext.Provider
             value={{
@@ -160,8 +157,7 @@ const ContactState = props => {
                 clearCurrent,
                 filterContacts,
                 clearFilter,
-                clearContacts,
-                setLoading
+                clearContacts
             }}>
             {props.children}
         </ContactContext.Provider>

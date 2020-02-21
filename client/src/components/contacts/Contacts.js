@@ -2,12 +2,15 @@ import React, { Fragment, useContext, useEffect } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import ContactItem from './ContactItem'
 import ContactContext from '../../context/contact/ContactContext'
+import AuthContext from '../../context/auth/AuthContext'
 import Spinner from '../layout/Spinner'
 
 const Contacts = () => {
     const contactContext = useContext(ContactContext)
+    const authContext = useContext(AuthContext)
 
-    const { contacts, filtered, getContacts, loading } = contactContext
+    const { contacts, filtered, getContacts } = contactContext
+    const { loading } = authContext
 
     useEffect(() => {
         getContacts()

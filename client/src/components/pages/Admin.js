@@ -1,13 +1,15 @@
 import React, { useContext, useEffect } from 'react'
-import Services from '../services/Services'
-import Posts from '../posts/Posts'
 import About from '../about/About'
+import Services from '../services/Services'
+import ServiceForm from '../services/ServiceForm'
+import Posts from '../posts/Posts'
+import PostForm from '../posts/PostForm'
 import AuthContext from '../../context/auth/AuthContext'
 
-const Home = () => {
+const Admin = () => {
     const authContext = useContext(AuthContext)
 
-    const { loadUser } = authContext
+    const { loadUser, isAuthenticated } = authContext
 
     useEffect(() => {
         loadUser()
@@ -17,12 +19,16 @@ const Home = () => {
     return (
         <div className="grid-2">
             <div>
-                <Services />
-                <About />
+                <Services admin="true" />
+                <ServiceForm />
+                <About admin="true" />
             </div>
-            <Posts />
+            <div>
+                <Posts admin="true" />
+                <PostForm />
+            </div>
         </div>
     )
 }
 
-export default Home
+export default Admin

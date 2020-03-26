@@ -11,7 +11,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            props.history.push('/')
+            props.history.push('/admin')
         }
 
         if (error === 'Invalid Credentials') {
@@ -27,7 +27,7 @@ const Login = (props) => {
         password: ''
     })
 
-    const {email, password } = user
+    const { email, password } = user
 
     const onChange = (e) => {
         setUser({
@@ -42,17 +42,17 @@ const Login = (props) => {
             setAlert('Please fill in all fields')
         } else {
             login({
-                email, 
+                email,
                 password
             })
         }
     }
 
     return (
-        <div className="form-container">
-            <h1>
-                Account <span className="text-primary">Login</span>
-            </h1>
+        <div className="all-center">
+            <h2>
+                Account Login
+            </h2>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email Address</label>
@@ -62,7 +62,8 @@ const Login = (props) => {
                         value={email}
                         onChange={onChange}
                         required
-                    />
+                        className="form-text"
+                        />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -72,7 +73,8 @@ const Login = (props) => {
                         value={password}
                         onChange={onChange}
                         required
-                    />
+                        className="form-text"
+                        />
                 </div>
                 <input type="submit" value="Login" className="btn btn-primary btn-block" />
             </form>

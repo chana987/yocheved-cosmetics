@@ -2,18 +2,14 @@ import React, { Fragment, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../context/auth/AuthContext'
-import ContactContext from '../../context/contact/ContactContext'
 
 const Navbar = ({ title, icon }) => {
     const authContext = useContext(AuthContext)
-    const contactContext = useContext(ContactContext)
 
     const { isAuthenticated, logout, user } = authContext
-    const { clearContacts } = contactContext
 
     const onLogout = () => {
         logout()
-        clearContacts()
     }
 
     const authLinks = (
@@ -24,13 +20,13 @@ const Navbar = ({ title, icon }) => {
                     <i className="fas fa-sign-out-alt"></i>
                     <span className="hide-sm">Logout</span>
                 </a>
+                <Link to='/register'>Register new admin</Link>
             </li>
         </Fragment>
     )
 
     const guestLinks = (
         <Fragment>
-            <Link to='/register'>Register</Link>
             <Link to='/login'>Login</Link>
         </Fragment>
     )
@@ -38,7 +34,7 @@ const Navbar = ({ title, icon }) => {
     return (
         <div className="navbar bg-primary">
             <h1>
-                <i className={icon} /> {title}
+                <i className={icon} />&#160;{title}
             </h1>
             <ul>
                 {isAuthenticated ? authLinks : guestLinks}
@@ -53,8 +49,8 @@ Navbar.propTypes = {
 }
 
 Navbar.defaultProps = {
-    title: 'Contact Keeper',
-    icon: 'fas fa-id-card-alt'
+    title: 'Yocheved Cosmetics',
+    icon: 'fas fa-spa'
 }
 
 export default Navbar

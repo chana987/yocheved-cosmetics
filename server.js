@@ -13,7 +13,9 @@ app.use(express.json({ extended: false }))
 // define routes
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/users', require('./routes/users'))
-app.use('/api/contacts', require('./routes/contacts'))
+app.use('/api/about', require('./routes/about'))
+app.use('/api/posts', require('./routes/posts'))
+app.use('/api/services', require('./routes/services'))
 
 // serve static routes in production
 if (process.env.NODE_ENV === 'production') {

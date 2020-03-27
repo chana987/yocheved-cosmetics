@@ -13,21 +13,29 @@ const Navbar = ({ title, icon }) => {
     }
 
     const authLinks = (
-        <Fragment>
+        <ul>
             <li>Hello, {user && user.name}</li>
+            <li>
+                <Link to='/register'>Register New Admin</Link>
+            </li>
+            <li>
+                <Link to='/'>Guest View</Link>
+            </li>
+            <li>
+                <Link to='/admin'>Admin View</Link>
+            </li>
             <li>
                 <a onClick={onLogout} href="#!">
                     <i className="fas fa-sign-out-alt"></i>
                     <span className="hide-sm">Logout</span>
                 </a>
-                <Link to='/register'>Register new admin</Link>
             </li>
-        </Fragment>
+        </ul>
     )
 
     const guestLinks = (
         <Fragment>
-            <Link to='/login'>Login</Link>
+            {/* <Link to='/login'>Login</Link> */}
         </Fragment>
     )
 

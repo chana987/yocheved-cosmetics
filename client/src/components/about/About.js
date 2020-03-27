@@ -14,10 +14,10 @@ const About = ({ admin }) => {
     useEffect(() => {
         getAbout()
         //eslint-disable-next-line
-    }, [about])
+    }, [])
 
-    if (about[0]) {
-        const { title, text, phone, email, address } = about[0]
+    if (about) {
+        const { title, text, phone, email, address } = about
 
         return (
             <div>

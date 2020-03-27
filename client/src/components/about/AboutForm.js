@@ -7,17 +7,8 @@ const AboutForm = () => {
     const { about: currentAbout, updateAbout } = aboutContext
 
     useEffect(() => {
-        if (currentAbout[0]) {
-            const { title, text, phone, email, address, _id } = currentAbout[0]
-
-            setAbout({
-                title: title,
-                text: text,
-                phone: phone ? phone : '',
-                email: email ? email : '',
-                address: address ? address : '',
-                _id: _id
-            })
+        if (currentAbout) {
+            setAbout(currentAbout)
         } else {
             setAbout({
                 title: '',
@@ -27,14 +18,14 @@ const AboutForm = () => {
                 address: ''
             })
         }
-    }, [currentAbout])
+    }, [aboutContext, currentAbout])
 
     const [about, setAbout] = useState({
-        title: '',
-        text: '',
-        phone: '',
-        email: '',
-        address: ''
+        title: currentAbout.title,
+        text: currentAbout.text,
+        phone: currentAbout.phone || '',
+        email: currentAbout.email || '',
+        address: currentAbout.address || ''
     })
 
     const { title, text, phone, email, address } = about
@@ -49,18 +40,18 @@ const AboutForm = () => {
         updateAbout(about)
 
         setAbout({
-            title: '',
-            text: '',
-            phone: '',
-            email: '',
-            address: ''
+            title: currentAbout.title,
+            text: currentAbout.text,
+            phone: currentAbout.phone || '',
+            email: currentAbout.email || '',
+            address: currentAbout.address || ''
         })
     }
 
     return (
         <form onSubmit={onSubmit}>
             <h2>Edit Personal Info</h2>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <input
                     type="text"
@@ -69,7 +60,7 @@ const AboutForm = () => {
                     onChange={onChange}
                     className="form-text"
                 />
-            </div>
+            </div> */}
             <div className="form-group">
                 <label htmlFor="text">Body</label>
                 <textarea

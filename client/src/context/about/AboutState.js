@@ -10,13 +10,7 @@ import {
 
 const AboutState = props => {
     const initialState = {
-        about: {
-            title: '',
-            text: '',
-            phone: '',
-            email: '',
-            address: ''
-        },
+        about: null,
         error: null
     }
 
@@ -27,9 +21,14 @@ const AboutState = props => {
         try {
             const res = await axios.get('/api/about')
 
+            let about
+            if (res.data.length > 0) {
+                about = res.data[0]
+            }
+
             dispatch({
                 type: GET_ABOUT,
-                payload: res.data
+                payload: about
             })
         } catch (err) {
             dispatch({
@@ -50,9 +49,14 @@ const AboutState = props => {
         try {
             const res = await axios.put(`/api/about/${about._id}`, about, config)
 
+            let newAbout
+            if (res.data.length > 0) {
+                newAbout = res.data[0]
+            }
+
             dispatch({
                 type: UPDATE_ABOUT,
-                payload: res.data
+                payload: newAbout
             })
         } catch (err) {
             dispatch({

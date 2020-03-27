@@ -27,10 +27,12 @@ const ServiceItem = ({ service, admin }) => {
                     &#160;{price}
                 </span>}
             </h4>
-            {details && <div className="service-details">
-                {details}
-            </div>}
-            {image && <img src={image} alt="" className="service-image" />}
+            <div className="service-details">
+                {image && <img src={`https://source.unsplash.com/${image}/200x200`} alt="" className="service-image round-img" />}
+                {details && <span>
+                    {details}
+                </span>}
+            </div>
             {isAuthenticated && admin && <p>
                 <button
                     onClick={() => setCurrentService(service)}

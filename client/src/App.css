@@ -130,12 +130,15 @@ p {
 }
 
 .service-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
   width: 80%;
 }
 
 .service-image {
-  width: 10rem;
-  height: 10rem;
+  width: 3rem;
+  height: auto;
+  margin: .5rem 1rem .2rem .2rem;
 }
 
 .posts {
@@ -151,6 +154,7 @@ p {
 }
 
 .post-image {
+  margin: 0 25%;
   width: 50%;
 }
 
@@ -374,7 +378,7 @@ table th {
 }
 
 .navbar a:hover {
-  color: var(--color-light);
+  color: var(--color-primary-light);
 }
 
 .navbar .welcome span {
@@ -387,16 +391,10 @@ table th {
   .hide-sm {
     display: none;
   }
-  .grid-2, .grid-3, .grid-4 {
+  /* .grid-2, .grid-3, .grid-4 {
     grid-template-columns: 1fr;
-  }
-  /* Text Styles */
-  .large {
-    font-size: 2rem;
-  }
-  .lead {
-    font-size: 1rem;
-  }
+  } */
+
   /* Navbar */
   .navbar {
     display: block;
@@ -426,15 +424,19 @@ table th {
   transition: opacity 1000ms ease-in;
 }
 
-@media only screen and (max-width: 62.5em) {
+@media only screen and (max-width: 50em) {
   :root {
     font-size: 75%;
   }
 }
 
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 27em) {
   :root {
-    font-size: 50%;
+    font-size: 60%;
     /* 8px */
+  }
+
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
   }
 }

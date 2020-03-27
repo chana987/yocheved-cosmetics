@@ -28,7 +28,7 @@ const PostItem = ({ post, admin }) => {
             </h3>
             <div>
                 <p>{body}</p>
-                <img src={image} alt="" className="post-image" />
+                {image && <img src={`https://source.unsplash.com/${image}/200x200`} alt="" className="post-image" />}
                 {isAuthenticated && admin && <div>
                     <button
                         onClick={() => setCurrentPost(post)}

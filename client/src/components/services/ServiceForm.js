@@ -87,7 +87,7 @@ const ServiceForm = () => {
                     />
             </div>
             <div className="form-group">
-                <label htmlFor="image">Image link (optional)</label>
+                <label htmlFor="image">UnSplash Image ID (optional)</label>
                 <input
                     type="text"
                     name="image"

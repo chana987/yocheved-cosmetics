@@ -1,14 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react'
 import AboutContext from '../../context/about/AboutContext'
+import AlertContext from '../../context/alert/AlertContext'
 
 const AboutForm = () => {
     const aboutContext = useContext(AboutContext)
+    const alertContext = useContext(AlertContext)
 
-    const { about: currentAbout, updateAbout } = aboutContext
+    const { about, updateAbout, error, clearErrors } = aboutContext
+    const { setAlert } = alertContext
 
     useEffect(() => {
-        if (currentAbout) {
-            setAbout(currentAbout)
+        if (error !== null) {
+            setAlert(error, 'danger')
+            clearErrors()
+        }
+        if (about) {
+            setAbout(about)
         } else {
             setAbout({
                 title: '',
@@ -18,34 +25,32 @@ const AboutForm = () => {
                 address: ''
             })
         }
-    }, [aboutContext, currentAbout])
+    }, [aboutContext, about])
 
-    const [about, setAbout] = useState({
-        title: currentAbout.title,
-        text: currentAbout.text,
-        phone: currentAbout.phone || '',
-        email: currentAbout.email || '',
-        address: currentAbout.address || ''
+    const [newAbout, setAbout] = useState({
+        title: '',
+        text: '',
+        phone: '',
+        email: '',
+        address: ''
     })
 
-    const { title, text, phone, email, address } = about
+    const { title, text, phone, email, address } = newAbout
 
     const onChange = (e) => setAbout({
-        ...about,
+        ...newAbout,
         [e.target.name]: e.target.value
     })
 
     const onSubmit = (e) => {
         e.preventDefault()
-        updateAbout(about)
+        updateAbout(newAbout)
 
-        setAbout({
-            title: currentAbout.title,
-            text: currentAbout.text,
-            phone: currentAbout.phone || '',
-            email: currentAbout.email || '',
-            address: currentAbout.address || ''
-        })
+        if (error !== null) {
+            setAlert(error)
+        }
+
+        setAbout(about)
     }
 
     return (

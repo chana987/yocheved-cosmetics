@@ -65,6 +65,7 @@ const ServiceForm = () => {
                     value={title}
                     onChange={onChange}
                     className="form-text"
+                    required
                     />
             </div>
             <div className="form-group">
@@ -75,6 +76,7 @@ const ServiceForm = () => {
                     value={price}
                     onChange={onChange}
                     className="form-text"
+                    required
                     />
             </div>
             <div className="form-group">

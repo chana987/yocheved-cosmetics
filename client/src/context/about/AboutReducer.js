@@ -2,7 +2,8 @@ import {
     GET_ABOUT,
     UPDATE_ABOUT,
     ABOUT_ERROR,
-    SET_LOADING
+    SET_LOADING,
+    CLEAR_ERRORS
 } from '../types'
 
 export default (state, action) => {
@@ -16,7 +17,7 @@ export default (state, action) => {
         case UPDATE_ABOUT:
             return {
                 ...state,
-                about: [action.payload],
+                about: action.payload,
                 loading: false
             }
         case ABOUT_ERROR:
@@ -29,6 +30,11 @@ export default (state, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
             }
         default:
             return state

@@ -5,13 +5,15 @@ import AboutReducer from './AboutReducer'
 import {
     GET_ABOUT,
     UPDATE_ABOUT,
-    ABOUT_ERROR
+    ABOUT_ERROR,
+    CLEAR_ERRORS
 } from '../types'
 
 const AboutState = props => {
     const initialState = {
         about: null,
-        error: null
+        error: null,
+        loading: true
     }
 
     const [state, dispatch] = useReducer(AboutReducer, initialState)
@@ -46,17 +48,14 @@ const AboutState = props => {
             }
         }
 
+        console.log(about)
         try {
             const res = await axios.put(`/api/about/${about._id}`, about, config)
-
-            let newAbout
-            if (res.data.length > 0) {
-                newAbout = res.data[0]
-            }
-
+            console.log(res)
+           
             dispatch({
                 type: UPDATE_ABOUT,
-                payload: newAbout
+                payload: res.data
             })
         } catch (err) {
             dispatch({
@@ -88,6 +87,9 @@ const AboutState = props => {
             })
         }
     }
+    
+    //clear errors
+    const clearErrors = () => dispatch({ type: CLEAR_ERRORS}) 
 
     return (
         <AboutContext.Provider
@@ -96,7 +98,8 @@ const AboutState = props => {
                 error: state.error,
                 getAbout,
                 updateAbout,
-                saveAbout
+                saveAbout,
+                clearErrors
             }}>
             {props.children}
         </AboutContext.Provider>

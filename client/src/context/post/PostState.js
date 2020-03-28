@@ -16,7 +16,8 @@ const PostState = props => {
     const initialState = {
         posts: null,
         currentPost: null,
-        error: null
+        error: null,
+        loading: true
     }
 
     const [state, dispatch] = useReducer(PostReducer, initialState)

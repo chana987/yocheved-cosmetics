@@ -62,6 +62,7 @@ const PostForm = () => {
                     value={title}
                     onChange={onChange}
                     className="form-text"
+                    required
                 />
             </div>
             <div className="form-group">
@@ -71,6 +72,7 @@ const PostForm = () => {
                     value={body}
                     onChange={onChange}
                     className="form-text"
+                    required
                 />
             </div>
             <div className="form-group">

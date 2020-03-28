@@ -8,7 +8,7 @@ export default (state, action) => {
         case SET_ALERT:
             return [ ...state, action.payload ]
         case REMOVE_ALERT:
-            return state.filter(alert => alert.id !== action.payload)
+            return state.pop()
         default:
             return state
     }

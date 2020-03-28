@@ -24,24 +24,17 @@ router.get('/', async (req, res) => {
 // @access      Private
 router.put('/:id', auth, async (req, res) => {
     const { title, text, phone, email, address } = req.body
-
-    // Build about object
-    const aboutFields = {}
-    if (title) aboutFields.title = title
-    if (text) aboutFields.text = text
-    if (phone) aboutFields.phone = phone
-    if (email) aboutFields.email = email
-    if (address) aboutFields.address = address
+    console.log(req.body)
 
     try {
         let about = await About.findById(req.params.id)
 
         if (!about) return res.status(404).json({ msg: 'About not found' })
 
-        about = await About.findByIdAndUpdate(req.params.id, { $set: aboutFields },
+        let updatedAbout = await About.findByIdAndUpdate(req.params.id, { $set: req.body },
             { new: true })
 
-        res.json(about)
+        res.json(updatedAbout)
     } catch (err) {
         console.error(err.message)
         res.status(500).send('Server error')
